@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K.C.S. Pavan Kumar - Portfolio</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* CSS Variables for easy theming */
+        
+         :root {
+            --primary-color: #4A00E0;
+            /* Deeper purple */
+            --secondary-color: #8E2DE2;
+            /* Lighter purple */
+            --accent-color: #FF6F00;
+            /* Vibrant orange */
+            --light-bg: #F0F2F5;
+            /* Light grey for sections */
+            --dark-text: #2c3e50;
+            /* Dark charcoal */
+            --light-text: #ecf0f1;
+            /* Light grey */
+            --card-bg-light: rgba(255, 255, 255, 0.8);
+            /* Semi-transparent white for glass effect */
+            --card-border: rgba(255, 255, 255, 0.3);
+            --gradient-1: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --gradient-2: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            --gradient-3: linear-gradient(135deg, #FF9933, #FF6F00);
+            /* Orange gradient */
+        }
+        /* Preloader */
+        
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+            opacity: 1;
+        }
+        
+        .spinner {
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top: 8px solid #fff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        /* General Body Styles */
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            margin: 0;
+            opacity: 0;
+            /* Hidden until loaded */
+            transition: opacity 1s ease-in;
+        }
+        
+        body.loaded {
+            opacity: 1;
+        }
+        /* Navbar */
+        
+        .navbar {
+            background: var(--gradient-1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: background 0.4s ease-in-out, transform 0.3s ease-out;
+            padding: 1rem 0;
+        }
+        
+        .navbar.scrolled {
+            background: var(--gradient-2);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--light-text) !important;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        
+        .nav-link {
+            color: var(--light-text) !important;
+            font-weight: 500;
+            margin: 0 15px;
+            position: relative;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent-color);
+            left: 50%;
+            bottom: -8px;
+            transform: translateX(-50%);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: #fff !important;
+            transform: translateY(-3px);
+        }
+        
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+        /* Hero Section */
+        
+        .hero {
+            background: var(--gradient-1);
+            color: var(--light-text);
+            padding: 150px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+            animation: fadeInGradient 1.5s ease-out;
+            min-height: 100vh;
+            /* Ensure it takes full viewport height initially */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        @keyframes fadeInGradient {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+            animation: textRise 1s ease-out forwards;
+        }
+        
+        .hero p.lead {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            animation: textRise 1s ease-out forwards 0.3s;
+            opacity: 0;
+        }
+        
+        @keyframes textRise {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        /* Profile Circle */
+        
+        .profile-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 40px auto;
+            border: 10px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.6s ease;
+            /* Bouncy effect */
+            animation: floatUpDown 3s ease-in-out infinite alternate;
+        }
+        
+        .profile-circle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        @keyframes floatUpDown {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.1);
+            /* Slight desaturation for artistic touch */
+            transition: filter 0.3s ease;
+        }
+        
+        .profile-circle:hover img {
+            filter: grayscale(0);
+            /* Full color on hover */
+        }
+        /* Section Titles */
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 3rem;
+            text-transform: uppercase;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+            animation: underlineGrow 1.5s ease-out forwards;
+        }
+        
+        @keyframes underlineGrow {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100px;
+            }
+        }
+        /* About Section */
+        
+        #about p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--dark-text);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: justify;
+            text-align-last: center;
+            /* Ensures the last line is also centered */
+            padding: 0 15px;
+        }
+        /* Card Styles (Skills & Project) - Glassmorphism inspired */
+        
+        .card {
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            /* Frosted glass effect */
+            background-color: var(--card-bg-light);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            /* Ensure cards in a row have equal height */
+        }
+        
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+        }
+        
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+        
+        .card-text {
+            color: #555;
+            font-size: 1.05rem;
+        }
+        /* Icons */
+        
+        .icon {
+            color: var(--accent-color);
+            font-size: 3.5em;
+            /* Larger icons */
+            margin-bottom: 15px;
+            transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
+        }
+        
+        .card:hover .icon {
+            transform: translateY(-8px) scale(1.1);
+            color: var(--primary-color);
+        }
+        /* Custom Button */
+        
+        .btn-custom {
+            background: var(--gradient-3);
+            /* Orange gradient button */
+            color: white;
+            border-radius: 30px;
+            padding: 12px 35px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            /* Bouncy hover */
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+            background: var(--gradient-2);
+            /* Change background on hover */
+        }
+        
+        .btn-custom::before {
+            /* Ripple effect on hover */
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
+        }
+        
+        .btn-custom:hover::before {
+            width: 200%;
+            height: 200%;
+            opacity: 1;
+        }
+        /* Certificates Section Specific Styles */
+        
+        .certificate-card {
+            padding: 0;
+            /* Remove padding from the general card style */
+            overflow: hidden;
+            /* Ensure image corners are rounded */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            height: auto;
+            /* Allow height to adjust based on content */
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+        
+        .certificate-img {
+            width: 100%;
+            height: 200px;
+            /* Fixed height for certificate images */
+            object-fit: cover;
+            /* Crop images to fit */
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .certificate-card:hover .certificate-img {
+            transform: scale(1.05);
+        }
+        
+        .certificate-card .card-body {
+            padding: 20px;
+        }
+        
+        .certificate-card .card-title {
+            font-size: 1.4rem;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .certificate-card .card-text {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        /* Contact Section List */
+        
+        #contact .list-group-item {
+            background-color: var(--card-bg-light);
+            border: 1px solid var(--card-border);
+            border-radius: 15px;
+            margin-bottom: 10px;
+            padding: 18px 25px;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
+        }
+        
+        #contact .list-group-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        #contact .list-group-item a {
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        #contact .list-group-item a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        #contact .icon {
+            color: var(--secondary-color);
+            /* Contact icons a bit different shade */
+            font-size: 1.8em;
+            margin-right: 20px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        #contact .list-group-item:hover .icon {
+            transform: rotate(5deg) scale(1.1);
+            color: var(--accent-color);
+        }
+        /* Footer */
+        
+        footer {
+            background: var(--gradient-2);
+            color: var(--light-text);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 80px;
+            font-size: 0.95rem;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+        }
+        /* Responsive Adjustments */
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .hero p.lead {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .profile-circle {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 15px 80px;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p.lead {
+                font-size: 1.3rem;
+            }
+            .profile-circle {
+                width: 150px;
+                height: 150px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section-title::after {
+                width: 70px;
+                height: 4px;
+            }
+            .card {
+                margin-bottom: 25px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p.lead {
+                font-size: 1rem;
+            }
+            .profile-circle {
+                width: 120px;
+                height: 120px;
+                border-width: 6px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            .section-title::after {
+                width: 50px;
+                height: 3px;
+            }
+            .nav-link {
+                margin: 0 10px;
+            }
+            .btn-custom {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+            .list-group-item {
+                font-size: 1rem;
+                padding: 15px 18px;
+            }
+            .icon {
+                font-size: 2.5em;
+            }
+            #contact .icon {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#about">Pavan Kumar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#project">Project</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1 data-aos="fade-up" data-aos-duration="1000">K.C.S.Pavan Kumar</h1>
+        <p class="lead" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">BCA Student | Web Developer | AI Tools Explorer</p>
+
+        <div class="profile-circle" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="600">
+            <img src="C:\Users\user\Desktop\portfolio\IMG_20250310_135938_271.jpg" />
+
+        </div>
+        <div class="mt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900">
+            <a href="path/to/your/resume.pdf" target="_blank" class="btn btn-custom btn-lg">
+                Download Resume <i class="fas fa-download ms-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <section id="about" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="section-title" data-aos="fade-right" data-aos-duration="800">About Me</h2>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                I'm *K.C.S.Pavan Kumar*, currently pursuing BCA at Aditya Degree College, Tadepalligudem, under Adikavi Nannaya University. With a fervent passion for crafting intuitive web experiences, I specialize in *frontend technologies* including HTML, CSS, and
+                JavaScript, bringing designs to life with precision and creativity. My curiosity also drives me to explore the cutting edge of *AI tools*, particularly in prompt engineering and automation with platforms like ChatGPT, seeking innovative
+                ways to enhance digital solutions. My goal is to leverage my programming expertise and strong communication skills to build impactful and user-centric digital products that solve real-world problems.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills" class="py-5">
+        <div class="container py-5">
+            <h2 class="section-title" data-aos="fade-left" data-aos-duration="800">Skills</h2>
+            <div class="row text-center justify-content-center">
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card">
+                        <i class="fas fa-code icon"></i>
+                        <h5 class="card-title">Frontend Development</h5>
+                        <p class="card-text">HTML, CSS, JavaScript, Responsive Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card">
+                        <i class="fas fa-brain icon"></i>
+                        <h5 class="card-title">AI & Automation Tools</h5>
+                        <p class="card-text">Prompt Engineering, ChatGPT Expert</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card">
+                        <i class="fas fa-lightbulb icon"></i>
+                        <h5 class="card-title">Other Proficiencies</h5>
+                        <p class="card-text">Python , Problem Solving, Effective Communication</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section id="certificates" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="section-title" data-aos="fade-right" data-aos-duration="300">Certificates</h2>
+            <div class="row text-center justify-content-center card-grid-container">
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-code icon"></i>
+                            <h5 class="card-title">Introduction to Python</h5>
+                            <p class="card-text">Issued by Red Hat Training</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_introduction-to-python-programming-activity-7304157462352252928-icUp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank"
+                            class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-code icon"></i>
+                            <h5 class="card-title">Python Essentials 1</h5>
+                            <p class="card-text">Issued by Cisco NetAcad</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_python-essentials-1-activity-7304157977387638784-KM9R?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-code icon"></i>
+                            <h5 class="card-title">Python Essentials 2</h5>
+                            <p class="card-text">Issued by Cisco NetAcad</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_python-essentials-2-activity-7305942246778945537-sPSY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-code icon"></i>
+                            <h5 class="card-title">HTML, CSS and JavaScript: Building a Web</h5>
+                            <p class="card-text">Issued by LinkedIn Learning</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_html-css-and-javascript-activity-7304155749310504960-Ms_a?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-brain icon"></i>
+                            <h5 class="card-title">Generative AI</h5>
+                            <p class="card-text">Issued by Microsoft and Linkedin Learning</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_generative-ai-activity-7304156272558280704-Mkix?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-brain icon"></i>
+                            <h5 class="card-title">AI Tools Workshop</h5>
+                            <p class="card-text">Issued by Be10X</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_ai-tools-and-workshop-activity-7304156940497039362-khPM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-lightbulb icon"></i>
+                            <h5 class="card-title">Business Writing Techniques</h5>
+                            <p class="card-text">Issued by EdX</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_business-writing-techniques-activity-7307411317668163584-JrzX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-code icon"></i>
+                            <h5 class="card-title">Web Development Internship</h5>
+                            <p class="card-text">Issued by SkillCraft Technologies</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_skillcraft-activity-7308426497399169025-hMcm?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-code icon"></i>
+                            <h5 class="card-title">Web Development Internship (LoR)</h5>
+                            <p class="card-text">Issued by SkillCraft Technologies</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_skillcraft-activity-7308859930558480384-Z6i7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 card-grid-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-code icon"></i>
+                            <h5 class="card-title">Power BI Workshop</h5>
+                            <p class="card-text">Issued by Office Masters</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/chandra-sri-pavan-kumar-kapaka-8b4317253_power-bi-activity-7338584871411306499-FpmD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD6EWUgBKqjafxfhzZVKpVWspV7_WjFTcZM" target="_blank" class="btn btn-custom btn-sm mt-2">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    ---
+    <section id="project" class="py-5">
+        <div class="container py-5">
+            <h2 class="section-title" data-aos="fade-right" data-aos-duration="800">My Project</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 mb-4">
+                    <div class="card text-center h-100" data-aos="flip-up" data-aos-duration="1000"> <i class="fas fa-lightbulb"></i>
+                        <h5 class="card-title">AMI Hub</h5>
+                        <p class="card-text">
+                            The core objective behind developing amihub.ccbp.tech is to significantly enhance my web development proficiencies, encompassing front-end user experience, back-end logic, database management, and deployment strategies, all within the practical context
+                            of building a functional e-commerce platform.
+                        </p>
+                        <a href="https://amihub.ccbp.tech/" target="_blank" class="btn btn-custom mt-auto">View Project <i class="fas fa-arrow-right"></i></a> </div>
+                </div>
+
+                <div class="col-lg-6 col-md-8 mb-4">
+                    <div class="card text-center h-100" data-aos="flip-up" data-aos-duration="1000"> <i class="fas font-awesome"></i>
+                        <h5 class="card-title">XOByPavan</h5>
+                        <p class="card-text">
+                            The objective of this Tic-Tac-Toe game is for players to strategically place their 'X' or 'O' markers to achieve three in a row, either horizontally, vertically, or diagonally, before their opponent does.
+                        </p>
+                        <a href="https://xobypavan.ccbp.tech/" target="_blank" class="btn btn-custom mt-auto">View Project <i class="fas fa-arrow-right"></i></a> </div>
+                </div>
+
+                <div class="col-lg-6 col-md-8 mb-4">
+                    <div class="card text-center h-100" data-aos="flip-up" data-aos-duration="1000"> <i class="fas fa-seedling icon"></i>
+                        <h5 class="card-title">CropByPavan</h5>
+                        <p class="card-text">
+                            A dedicated website designed to provide essential and comprehensive information to farmers, aiding them in making informed decisions for their crops. Developed with a strong foundation in HTML & CSS, focusing on user-friendly interface and accessibility.
+                        </p>
+                        <a href="https://cropbypavan.ccbp.tech" target="_blank" class="btn btn-custom mt-auto">View Project <i class="fas fa-arrow-right"></i></a> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="section-title" data-aos="fade-left" data-aos-duration="800">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card" data-aos="zoom-in-up" data-aos-duration="1000">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fas fa-envelope icon"></i> Email: <a href="mailto:pavankumar.kapaka@gmail.com">pavankumar.kapaka@gmail.com</a></li>
+                            <li class="list-group-item"><i class="fas fa-phone icon"></i> Phone: +91 8919356682</li>
+                            <li class="list-group-item"><i class="fas fa-map-marker-alt icon"></i> Location: Tadepalligudem, Andhra Pradesh, India</li>
+                            <li class="list-group-item"><i class="fab fa-linkedin icon"></i> <a href="https://linkedin.com/in/chandra-sri-pavan-kumar-kapaka-8b4317253" target="_blank">LinkedIn Profile</a></li>
+                            <li class="list-group-item"><i class="fab fa-github icon"></i> <a href="https://github.com/kapaka-chandra-sri-pavan-kumar" target="_blank">GitHub Profile</a></li>
+                            <li class="list-group-item"><i class="fab fa-instagram icon"></i> <a href="https://www.instagram.com/pavan_kumar.kapaka/" target="_blank">instagram Profile</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 K.C.S. Pavan Kumar. All rights reserved. | Crafted with &hearts; & Code</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS library
+        AOS.init({
+            duration: 1000,
+              /* Animate for 1000ms */
+            once: true,
+                /* Animations only once on scroll */
+            mirror: false,
+               /* Do not repeat animations on scroll out/in */
+            offset: 100,
+                /* Offset (in px) from the top of the screen to trigger animations */
+        });
+
+        // Preloader script
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+                document.body.classList.add('loaded'); /* Add class to body to fade it in */
+            }, 500); // Wait for transition to complete before hiding
+        });
+
+        // Navbar active state and scroll effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section, header.hero');
+            const navbar = document.querySelector('.navbar');
+
+            function setActiveLink() {
+                let currentSection = '';
+                const navbarHeight = navbar.offsetHeight;
+
+                sections.forEach(section => {
+                    // Check if section is visible in the viewport
+                    const rect = section.getBoundingClientRect();
+                    const sectionTop = rect.top + window.scrollY; // Absolute position
+                    const sectionHeight = section.offsetHeight;
+
+                    // A section is "active" if its top is within 100px from the viewport top
+                    // or if the scroll position is within its bounds
+                    if (window.scrollY >= sectionTop - navbarHeight - 50 &&
+                        window.scrollY < sectionTop + sectionHeight - navbarHeight - 50) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                // Handle the special case for the hero section
+                if (window.scrollY < sections[0].offsetTop - navbarHeight) {
+                    currentSection = 'about'; // default to 'about' if at the very top (above the first section)
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (currentSection && link.getAttribute('href').includes(currentSection)) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Navbar scroll effect
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            // Set initial active link and navbar state on load
+            setActiveLink();
+            // Listen for scroll events to update active link and navbar style
+            window.addEventListener('scroll', setActiveLink);
+        });
+    </script>
+</body>
+
+</html>
