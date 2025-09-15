@@ -815,29 +815,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS library
         AOS.init({
             duration: 1000,
-              /* Animate for 1000ms */
             once: true,
-                /* Animations only once on scroll */
             mirror: false,
-               /* Do not repeat animations on scroll out/in */
             offset: 100,
-                /* Offset (in px) from the top of the screen to trigger animations */
         });
 
-        // Preloader script
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => {
                 preloader.style.display = 'none';
-                document.body.classList.add('loaded'); /* Add class to body to fade it in */
-            }, 500); // Wait for transition to complete before hiding
+                document.body.classList.add('loaded'); 
+            }, 500);
         });
 
-        // Navbar active state and scroll effect
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section, header.hero');
@@ -848,22 +841,18 @@
                 const navbarHeight = navbar.offsetHeight;
 
                 sections.forEach(section => {
-                    // Check if section is visible in the viewport
                     const rect = section.getBoundingClientRect();
-                    const sectionTop = rect.top + window.scrollY; // Absolute position
+                    const sectionTop = rect.top + window.scrollY; 
                     const sectionHeight = section.offsetHeight;
 
-                    // A section is "active" if its top is within 100px from the viewport top
-                    // or if the scroll position is within its bounds
                     if (window.scrollY >= sectionTop - navbarHeight - 50 &&
                         window.scrollY < sectionTop + sectionHeight - navbarHeight - 50) {
                         currentSection = section.getAttribute('id');
                     }
                 });
 
-                // Handle the special case for the hero section
                 if (window.scrollY < sections[0].offsetTop - navbarHeight) {
-                    currentSection = 'about'; // default to 'about' if at the very top (above the first section)
+                    currentSection = 'about'; 
                 }
 
                 navLinks.forEach(link => {
@@ -873,7 +862,6 @@
                     }
                 });
 
-                // Navbar scroll effect
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
@@ -881,14 +869,13 @@
                 }
             }
 
-            // Set initial active link and navbar state on load
             setActiveLink();
-            // Listen for scroll events to update active link and navbar style
             window.addEventListener('scroll', setActiveLink);
         });
     </script>
 </body>
 
 </html>
+
 
 
