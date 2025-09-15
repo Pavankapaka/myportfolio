@@ -13,30 +13,20 @@
     <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        /* CSS Variables for easy theming */
         
          :root {
             --primary-color: #4A00E0;
-            /* Deeper purple */
             --secondary-color: #8E2DE2;
-            /* Lighter purple */
             --accent-color: #FF6F00;
-            /* Vibrant orange */
             --light-bg: #F0F2F5;
-            /* Light grey for sections */
             --dark-text: #2c3e50;
-            /* Dark charcoal */
             --light-text: #ecf0f1;
-            /* Light grey */
             --card-bg-light: rgba(255, 255, 255, 0.8);
-            /* Semi-transparent white for glass effect */
             --card-border: rgba(255, 255, 255, 0.3);
             --gradient-1: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             --gradient-2: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             --gradient-3: linear-gradient(135deg, #FF9933, #FF6F00);
-            /* Orange gradient */
         }
-        /* Preloader */
         
         #preloader {
             position: fixed;
@@ -70,7 +60,6 @@
                 transform: rotate(360deg);
             }
         }
-        /* General Body Styles */
         
         body {
             font-family: 'Poppins', sans-serif;
@@ -79,14 +68,12 @@
             scroll-behavior: smooth;
             margin: 0;
             opacity: 0;
-            /* Hidden until loaded */
             transition: opacity 1s ease-in;
         }
         
         body.loaded {
             opacity: 1;
         }
-        /* Navbar */
         
         .navbar {
             background: var(--gradient-1);
@@ -152,7 +139,6 @@
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
         }
-        /* Hero Section */
         
         .hero {
             background: var(--gradient-1);
@@ -165,7 +151,6 @@
             border-bottom-right-radius: 50% 20%;
             animation: fadeInGradient 1.5s ease-out;
             min-height: 100vh;
-            /* Ensure it takes full viewport height initially */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -210,7 +195,6 @@
                 opacity: 1;
             }
         }
-        /* Profile Circle */
         
         .profile-circle {
             width: 200px;
@@ -221,7 +205,6 @@
             border: 10px solid rgba(255, 255, 255, 0.7);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.6s ease;
-            /* Bouncy effect */
             animation: floatUpDown 3s ease-in-out infinite alternate;
         }
         
@@ -244,15 +227,12 @@
             height: 100%;
             object-fit: cover;
             filter: grayscale(0.1);
-            /* Slight desaturation for artistic touch */
             transition: filter 0.3s ease;
         }
         
         .profile-circle:hover img {
             filter: grayscale(0);
-            /* Full color on hover */
         }
-        /* Section Titles */
         
         .section-title {
             font-family: 'Montserrat', sans-serif;
@@ -287,7 +267,6 @@
                 width: 100px;
             }
         }
-        /* About Section */
         
         #about p {
             font-size: 1.15rem;
@@ -297,15 +276,12 @@
             margin: 0 auto;
             text-align: justify;
             text-align-last: center;
-            /* Ensures the last line is also centered */
             padding: 0 15px;
         }
-        /* Card Styles (Skills & Project) - Glassmorphism inspired */
         
         .card {
             border: 1px solid var(--card-border);
             backdrop-filter: blur(10px);
-            /* Frosted glass effect */
             background-color: var(--card-bg-light);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -316,7 +292,6 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-            /* Ensure cards in a row have equal height */
         }
         
         .card:hover {
@@ -337,12 +312,10 @@
             color: #555;
             font-size: 1.05rem;
         }
-        /* Icons */
         
         .icon {
             color: var(--accent-color);
             font-size: 3.5em;
-            /* Larger icons */
             margin-bottom: 15px;
             transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
         }
@@ -351,16 +324,13 @@
             transform: translateY(-8px) scale(1.1);
             color: var(--primary-color);
         }
-        /* Custom Button */
         
         .btn-custom {
             background: var(--gradient-3);
-            /* Orange gradient button */
             color: white;
             border-radius: 30px;
             padding: 12px 35px;
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            /* Bouncy hover */
             border: none;
             font-weight: 600;
             text-transform: uppercase;
@@ -374,11 +344,9 @@
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
             background: var(--gradient-2);
-            /* Change background on hover */
         }
         
         .btn-custom::before {
-            /* Ripple effect on hover */
             content: '';
             position: absolute;
             top: 50%;
@@ -397,17 +365,13 @@
             height: 200%;
             opacity: 1;
         }
-        /* Certificates Section Specific Styles */
         
         .certificate-card {
             padding: 0;
-            /* Remove padding from the general card style */
             overflow: hidden;
-            /* Ensure image corners are rounded */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             height: auto;
-            /* Allow height to adjust based on content */
         }
         
         .certificate-card:hover {
@@ -418,9 +382,7 @@
         .certificate-img {
             width: 100%;
             height: 200px;
-            /* Fixed height for certificate images */
             object-fit: cover;
-            /* Crop images to fit */
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             transition: transform 0.3s ease;
@@ -445,7 +407,6 @@
             color: #777;
             margin-bottom: 15px;
         }
-        /* Contact Section List */
         
         #contact .list-group-item {
             background-color: var(--card-bg-light);
@@ -476,7 +437,6 @@
         
         #contact .icon {
             color: var(--secondary-color);
-            /* Contact icons a bit different shade */
             font-size: 1.8em;
             margin-right: 20px;
             transition: transform 0.3s ease, color 0.3s ease;
@@ -486,7 +446,6 @@
             transform: rotate(5deg) scale(1.1);
             color: var(--accent-color);
         }
-        /* Footer */
         
         footer {
             background: var(--gradient-2);
@@ -497,7 +456,6 @@
             font-size: 0.95rem;
             box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
         }
-        /* Responsive Adjustments */
         
         @media (max-width: 992px) {
             .hero h1 {
@@ -614,7 +572,7 @@
             <img src="https://media.licdn.com/dms/image/v2/D5603AQF2vhKlDQWmhA/profile-displayphoto-shrink_800_800/B56ZW4Lf8EHQAc-/0/1742551777997?e=1758758400&v=beta&t=h_qFBiQG9EmuCR-1wL-5Zc4qUZ_fQcWtjDKp4O9gTlY" />
 
         </div>
-        <div class="mt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900">
+        <div class="mt-5" data-aos="fade-up" data-aos-duration="900" data-aos-delay="400">
             <a href="https://drive.google.com/file/d/1eBiLjDSjNAhTg3O0Gwa4VL1RiDyc2CwJ/view?usp=sharing" target="_blank" class="btn btn-custom btn-lg">
                 Download Resume <i class="fas fa-download ms-2"></i>
             </a>
@@ -811,7 +769,6 @@
         <div class="container py-5">
             <h2 class="section-title mb-4" data-aos="fade-left" data-aos-duration="800">Get in Touch</h2>
             <div class="row justify-content-center">
-                <!-- Contact Info Column -->
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="card h-100" data-aos="zoom-in-up" data-aos-duration="1000">
                         <ul class="list-group list-group-flush">
@@ -824,7 +781,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- Contact Form Column -->
                 <div class="col-lg-6">
                     <div class="card h-100 p-4" data-aos="zoom-in-up" data-aos-duration="1000">
                         <form action="https://formsubmit.co/pavankumar.kapaka@gmail.com" method="POST">
@@ -934,4 +890,5 @@
 </body>
 
 </html>
+
 
