@@ -19,7 +19,7 @@
             --secondary-color: #8E2DE2;
             --accent-color: #FF6F00;
             --light-bg: #F0F2F5;
-            --dark-text: #2c3e50;
+            --dark-text: #000000;
             --light-text: #ecf0f1;
             --card-bg-light: rgba(255, 255, 255, 0.8);
             --card-border: rgba(255, 255, 255, 0.3);
@@ -77,14 +77,14 @@
         
         .navbar {
             background: var(--gradient-1);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 20px rgb(255, 255, 255);
             transition: background 0.4s ease-in-out, transform 0.3s ease-out;
             padding: 1rem 0;
         }
         
         .navbar.scrolled {
             background: var(--gradient-2);
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 15px rgba(255, 255, 255, 0.986);
         }
         
         .navbar-brand {
@@ -106,7 +106,7 @@
             margin: 0 15px;
             position: relative;
             transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 3px rgb(0, 0, 0);
         }
         
         .nav-link::after {
@@ -173,7 +173,7 @@
             font-weight: 700;
             font-size: 4.5rem;
             margin-bottom: 15px;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+            text-shadow: 3px 3px 10px rgb(255, 255, 255);
             animation: textRise 1s ease-out forwards;
         }
         
@@ -565,18 +565,25 @@
     </nav>
 
     <header class="hero">
-        <h1 data-aos="fade-up" data-aos-duration="1000">K.C.S.Pavan Kumar</h1>
-        <p class="lead" data-aos="fade-up" data-aos-duration="800" data-aos-delay="250">BCA Student | Web Developer | AI Tools Explorer</p>
+  <h1 data-aos="fadeInGradient" data-aos-duration="1000">K. C. S. Pavan Kumar</h1>
+  <p class="lead" data-aos="fadeInGradient" data-aos-duration="800" data-aos-delay="250">
+    BCA Student | Web Developer | AI Tools Explorer
+  </p>
 
-        <div class="profile-circle" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
-            <img src="https://media.licdn.com/dms/image/v2/D5603AQHT_B8QcUszLg/profile-displayphoto-scale_400_400/B56ZpY2IsFJQAg-/0/1762427181171?e=1764201600&v=beta&t=QdRDkRx5HeTv_GJrHEN7FQZLNLAoZxGjGJiMXMXhoU4" />
-        </div>
-        <div class="mt-auto" data-aos="fade-up" data-aos-duration="900" >
-            <a href="https://drive.google.com/file/d/1vuK9VwGAsZRwzqe3lcnRVQ5gcVGPAXMp/view?usp=sharing" target="_blank" class="btn btn-custom btn-lg">
-                Download Resume <i class="fas fa-download ms-2"></i>
-            </a>
-        </div>
+  <div class="profile-circle" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+    <img 
+      src="https://media.licdn.com/dms/image/v2/D5603AQHT_B8QcUszLg/profile-displayphoto-scale_400_400/B56ZpY2IsFJQAg-/0/1762427181171?e=1764201600&v=beta&t=QdRDkRx5HeTv_GJrHEN7FQZLNLAoZxGjGJiMXMXhoU4" 
+      alt="K.C.S. Pavan Kumar profile photo">
+  </div>
+
+  <div class="mt-auto" data-aos="fade-up" data-aos-duration="900">
+    <a href="https://drive.google.com/file/d/1vuK9VwGAsZRwzqe3lcnRVQ5gcVGPAXMp/view?usp=sharing"
+       target="_blank" rel="noopener noreferrer" class="btn btn-custom btn-lg">
+      Download Resume <i class="fas fa-download ms-2"></i>
+    </a>
+  </div>
     </header>
+
     <section id="about" class="py-5 bg-light">
         <div class="container py-5">
             <h2 class="section-title" data-aos="fade-right" data-aos-duration="800">About Me</h2>
@@ -937,12 +944,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
